@@ -18,8 +18,7 @@ function Footer() {
     <footer id="footer" className="border-t border-zinc-800 bg-zinc-950 px-6 py-10 text-zinc-400 sm:px-10 sm:py-12 lg:px-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
         <a href="/" className="flex w-fit items-center gap-3 text-sm font-bold tracking-[0.18em] text-white">
-          <span className="grid size-8 place-items-center rounded-lg bg-indigo-500 text-base font-black text-white shadow-[0_0_24px_rgba(99,102,241,0.35)]">A</span>
-          IASS
+          <img src="/iass-logo-white.png" alt="Indo American Startup School" className="h-10 w-auto max-w-[170px] object-contain" />
         </a>
 
         <nav aria-label="Footer navigation">

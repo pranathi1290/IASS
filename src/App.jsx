@@ -18,8 +18,7 @@ function App() {
       <nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/90 px-6 text-white backdrop-blur-md sm:px-10 lg:px-12">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6">
           <a href="#home" className="flex shrink-0 items-center gap-3 text-sm font-bold tracking-[0.18em] text-white">
-            <span className="grid size-8 place-items-center rounded-lg bg-indigo-500 text-base font-black text-white shadow-[0_0_24px_rgba(99,102,241,0.35)]">A</span>
-            <span className="hidden sm:inline">IASS</span>
+            <img src="/iass-logo-white.png" alt="Indo American Startup School" className="h-9 w-auto max-w-[148px] object-contain" />
           </a>
           <ul className="flex min-w-0 items-center gap-4 overflow-x-auto text-xs font-semibold text-zinc-400 [scrollbar-width:none] sm:gap-6 sm:text-sm [&::-webkit-scrollbar]:hidden">
             <li><a href="#home" className="whitespace-nowrap transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400">Home</a></li>

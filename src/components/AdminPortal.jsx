@@ -56,7 +56,7 @@ function AdminPortal() {
       <aside className="bg-zinc-950 px-5 py-6 text-white lg:flex lg:min-h-screen lg:w-72 lg:shrink-0 lg:flex-col lg:px-6">
         <a href="/" className="flex items-center gap-3 text-sm font-bold tracking-[0.18em]">
           <span className="grid size-9 place-items-center rounded-xl bg-indigo-500 text-base font-black shadow-[0_0_24px_rgba(99,102,241,0.35)]">A</span>
-          IASS <span className="ml-auto rounded-full bg-zinc-800 px-2 py-1 text-[10px] tracking-normal text-zinc-400">ADMIN</span>
+          <img src="/iass-logo-white.png" alt="Indo American Startup School" className="h-10 w-auto max-w-[170px] object-contain" /> <span className="ml-auto rounded-full bg-zinc-800 px-2 py-1 text-[10px] tracking-normal text-zinc-400">ADMIN</span>
         </a>
         <nav className="mt-10 flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible" aria-label="Admin sections">
           {navigation.map(({ id, label, icon: Icon, count }) => (
