@@ -14,6 +14,7 @@ function ApplyForm() {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+  const [submitError, setSubmitError] = useState('')
 
   function updateField(event) {
     const { name, value } = event.target
@@ -52,6 +53,7 @@ function ApplyForm() {
     }
 
     setStatus('submitting')
+    setSubmitError('')
 
     try {
       if (import.meta.env.PROD) {
@@ -60,7 +62,10 @@ function ApplyForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(form),
         })
-        if (!response.ok) throw new Error('Application submission failed')
+        if (!response.ok) {
+          const result = await response.json().catch(() => ({}))
+          throw new Error(result.error || 'Application submission failed')
+        }
       } else {
         const applications = JSON.parse(localStorage.getItem('ascend-admin-applications') || '[]')
         localStorage.setItem('ascend-admin-applications', JSON.stringify([
@@ -85,7 +90,8 @@ function ApplyForm() {
       setForm(initialForm)
       setErrors({})
       setStatus('success')
-    } catch {
+    } catch (error) {
+      setSubmitError(error.message || 'Please try again.')
       setStatus('error')
     }
   }
@@ -143,7 +149,7 @@ function ApplyForm() {
               {status === 'submitting' ? 'Sending...' : 'Submit Application'}
             </button>
             {status === 'success' && <p className="text-sm font-semibold text-indigo-300" role="status">Application received. We&apos;ll be in touch.</p>}
-            {status === 'error' && <p className="text-sm font-semibold text-red-300" role="alert">Something went wrong. Please try again.</p>}
+            {status === 'error' && <p className="max-w-xs text-sm font-semibold text-red-300" role="alert">{submitError}</p>}
           </div>
         </form>
       </div>
