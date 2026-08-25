@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const experts = [
   {
     name: 'Ayush Gupta',
@@ -33,10 +35,19 @@ const experts = [
   },
 ]
 
+function getSavedExperts() {
+  try {
+    const savedExperts = JSON.parse(localStorage.getItem('ascend-admin-experts'))
+    return Array.isArray(savedExperts) && savedExperts.length > 0 ? savedExperts : experts
+  } catch {
+    return experts
+  }
+}
+
 function ExpertCard({ expert }) {
   return (
     <article className="group relative h-80 min-w-[250px] overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-800 sm:min-w-[280px] md:min-w-0">
-      <div aria-hidden="true" className="absolute inset-0 bg-zinc-300" />
+      {expert.image ? <img src={expert.image} alt={`${expert.name}, ${expert.role}`} className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" /> : <div aria-hidden="true" className="absolute inset-0 bg-zinc-300" />}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-5">
         <h3 className="text-xl font-bold tracking-[-0.02em] text-white">{expert.name}</h3>
@@ -47,6 +58,8 @@ function ExpertCard({ expert }) {
 }
 
 function IndustryExperts() {
+  const [savedExperts] = useState(getSavedExperts)
+
   return (
     <section id="experts" className="overflow-hidden bg-zinc-100 px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
       <div className="mx-auto max-w-7xl">
@@ -57,7 +70,7 @@ function IndustryExperts() {
         </div>
 
         <div className="mt-14 flex gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 lg:grid-cols-4">
-          {experts.map((expert) => <ExpertCard key={expert.name} expert={expert} />)}
+          {savedExperts.map((expert) => <ExpertCard key={expert.id || expert.name} expert={expert} />)}
         </div>
       </div>
     </section>

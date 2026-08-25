@@ -25,15 +25,25 @@ const testimonials = [
   },
 ]
 
+function getSavedTestimonials() {
+  try {
+    const savedTestimonials = JSON.parse(localStorage.getItem('ascend-admin-testimonials'))
+    return Array.isArray(savedTestimonials) && savedTestimonials.length > 0 ? savedTestimonials : testimonials
+  } catch {
+    return testimonials
+  }
+}
+
 function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [savedTestimonials] = useState(getSavedTestimonials)
 
   function showPrevious() {
-    setActiveIndex((current) => (current - 1 + testimonials.length) % testimonials.length)
+    setActiveIndex((current) => (current - 1 + savedTestimonials.length) % savedTestimonials.length)
   }
 
   function showNext() {
-    setActiveIndex((current) => (current + 1) % testimonials.length)
+    setActiveIndex((current) => (current + 1) % savedTestimonials.length)
   }
 
   return (
@@ -56,10 +66,10 @@ function Testimonials() {
 
         <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/80 shadow-2xl shadow-black/20" aria-live="polite">
           <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-            {testimonials.map(({ name, startup, quote, initials, photoColor }) => (
+            {savedTestimonials.map(({ name, startup, quote, initials, photoColor, image }) => (
               <article key={name} className="grid min-w-full gap-8 p-7 sm:p-10 lg:grid-cols-[180px_1fr] lg:items-center lg:gap-14 lg:p-14">
-                <div className={`flex aspect-[4/5] w-32 items-end justify-center overflow-hidden rounded-3xl bg-gradient-to-br ${photoColor} text-3xl font-black tracking-[-0.06em] text-zinc-950/80 shadow-lg shadow-black/20 sm:w-40`} aria-label={`Photo placeholder for ${name}`} role="img">
-                  {initials}
+                <div className={`flex aspect-[4/5] w-32 items-end justify-center overflow-hidden rounded-3xl bg-gradient-to-br ${photoColor || 'from-indigo-300 to-indigo-600'} text-3xl font-black tracking-[-0.06em] text-zinc-950/80 shadow-lg shadow-black/20 sm:w-40`} aria-label={`Photo placeholder for ${name}`} role="img">
+                  {image ? <img src={image} alt={name} className="size-full object-cover" /> : initials || name.slice(0, 2).toUpperCase()}
                 </div>
                 <div className="max-w-3xl">
                   <div className="mb-6 flex items-center justify-between gap-4">
@@ -79,7 +89,7 @@ function Testimonials() {
         </div>
 
         <div className="mt-6 flex justify-center gap-2" role="tablist" aria-label="Choose a testimonial">
-          {testimonials.map(({ name }, index) => (
+          {savedTestimonials.map(({ name }, index) => (
             <button
               key={name}
               type="button"
