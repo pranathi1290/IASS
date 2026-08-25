@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/your-form-id'
+const HAS_FORMSPREE_ENDPOINT = !FORMSPREE_ENDPOINT.includes('your-form-id')
 
 const initialForm = {
   fullName: '',
@@ -53,16 +54,33 @@ function ApplyForm() {
     setStatus('submitting')
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      })
+      if (import.meta.env.PROD) {
+        const response = await fetch('/api/applications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        })
+        if (!response.ok) throw new Error('Application submission failed')
+      } else {
+        const applications = JSON.parse(localStorage.getItem('ascend-admin-applications') || '[]')
+        localStorage.setItem('ascend-admin-applications', JSON.stringify([
+          ...applications,
+          { id: `application-${Date.now()}`, name: form.fullName, email: form.email, phone: form.phone, idea: form.startupIdea, status: 'New' },
+        ]))
+      }
 
-      if (!response.ok) throw new Error('Submission failed')
+      if (HAS_FORMSPREE_ENDPOINT) {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(form),
+        })
+
+        if (!response.ok) throw new Error('Submission failed')
+      }
 
       setForm(initialForm)
       setErrors({})

@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BriefcaseBusiness, ChevronRight, FileText, ImagePlus, LayoutDashboard, LogOut, Plus, Search, Trash2, Users } from 'lucide-react'
 
 const storageKeys = {
   applications: 'ascend-admin-applications',
   testimonials: 'ascend-admin-testimonials',
   experts: 'ascend-admin-experts',
+  contactMessages: 'ascend-admin-contact-messages',
 }
 
 const defaultApplications = [
@@ -34,6 +35,18 @@ function AdminPortal() {
   const [applications, setApplications] = useState(() => readRecords(storageKeys.applications, defaultApplications))
   const [testimonials, setTestimonials] = useState(() => readRecords(storageKeys.testimonials, defaultTestimonials))
   const [experts, setExperts] = useState(() => readRecords(storageKeys.experts, defaultExperts))
+  const [contactMessages, setContactMessages] = useState(() => readRecords(storageKeys.contactMessages, []))
+
+  useEffect(() => {
+    if (!import.meta.env.PROD) return
+    Promise.all([
+      fetch('/api/applications').then((response) => response.json()),
+      fetch('/api/contact-messages').then((response) => response.json()),
+    ]).then(([remoteApplications, remoteMessages]) => {
+      setApplications(remoteApplications)
+      setContactMessages(remoteMessages)
+    }).catch((error) => console.error('Unable to load admin data', error))
+  }, [])
 
   function saveRecords(key, records, setter) {
     setter(records)
@@ -41,6 +54,10 @@ function AdminPortal() {
   }
 
   function deleteRecord(key, records, setter, id) {
+    if (import.meta.env.PROD && (key === storageKeys.applications || key === storageKeys.contactMessages)) {
+      const endpoint = key === storageKeys.applications ? '/api/applications' : '/api/contact-messages'
+      fetch(`${endpoint}?id=${encodeURIComponent(id)}`, { method: 'DELETE' }).catch((error) => console.error('Unable to delete record', error))
+    }
     saveRecords(key, records.filter((record) => record.id !== id), setter)
   }
 
@@ -49,6 +66,7 @@ function AdminPortal() {
     { id: 'applications', label: 'Applications', icon: FileText, count: applications.length },
     { id: 'testimonials', label: 'Testimonials', icon: ImagePlus, count: testimonials.length },
     { id: 'experts', label: 'Industry experts', icon: BriefcaseBusiness, count: experts.length },
+    { id: 'contacts', label: 'Contact messages', icon: Users, count: contactMessages.length },
   ]
 
   return (
@@ -81,6 +99,7 @@ function AdminPortal() {
           {activeView === 'applications' && <Applications applications={applications} onDelete={(id) => deleteRecord(storageKeys.applications, applications, setApplications, id)} />}
           {activeView === 'testimonials' && <TestimonialsManager testimonials={testimonials} onSave={(records) => saveRecords(storageKeys.testimonials, records, setTestimonials)} onDelete={(id) => deleteRecord(storageKeys.testimonials, testimonials, setTestimonials, id)} />}
           {activeView === 'experts' && <ExpertsManager experts={experts} onSave={(records) => saveRecords(storageKeys.experts, records, setExperts)} onDelete={(id) => deleteRecord(storageKeys.experts, experts, setExperts, id)} />}
+          {activeView === 'contacts' && <ContactMessages messages={contactMessages} onDelete={(id) => deleteRecord(storageKeys.contactMessages, contactMessages, setContactMessages, id)} />}
         </div>
       </main>
     </div>
@@ -99,6 +118,10 @@ function Overview({ applications, testimonials, experts, onNavigate }) {
 
 function Applications({ applications, onDelete }) {
   return <section className="rounded-2xl border border-zinc-200 bg-white shadow-sm"><div className="flex flex-col justify-between gap-4 border-b border-zinc-200 p-6 sm:flex-row sm:items-center"><div><h2 className="text-xl font-black">Applicant details</h2><p className="mt-1 text-sm text-zinc-500">Review submissions collected from the application form.</p></div><div className="flex items-center gap-2 rounded-lg bg-zinc-100 px-3 py-2 text-sm text-zinc-500"><Search size={16} aria-hidden="true" /> Search</div></div><div className="divide-y divide-zinc-100">{applications.map((application) => <article key={application.id} className="flex flex-col gap-5 p-6 sm:flex-row sm:items-start sm:justify-between"><div><div className="flex flex-wrap items-center gap-3"><h3 className="font-bold">{application.name}</h3><span className="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-bold text-orange-700">{application.status}</span></div><p className="mt-2 text-sm text-zinc-500">{application.email} · {application.phone}</p><p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-700">{application.idea}</p></div><button type="button" onClick={() => onDelete(application.id)} aria-label={`Delete application from ${application.name}`} className="text-zinc-400 transition hover:text-red-500"><Trash2 size={18} aria-hidden="true" /></button></article>)}</div></section>
+}
+
+function ContactMessages({ messages, onDelete }) {
+  return <section className="rounded-2xl border border-zinc-200 bg-white shadow-sm"><div className="border-b border-zinc-200 p-6"><h2 className="text-xl font-black">Contact messages</h2><p className="mt-1 text-sm text-zinc-500">Messages submitted through the public Contact Us form.</p></div><div className="divide-y divide-zinc-100">{messages.length === 0 && <p className="p-6 text-sm text-zinc-500">No contact messages yet.</p>}{messages.map((message) => <article key={message.id} className="flex flex-col gap-4 p-6 sm:flex-row sm:justify-between"><div><h3 className="font-bold">{message.name}</h3><a href={`mailto:${message.email}`} className="text-sm text-indigo-600">{message.email}</a><p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-700">{message.message}</p></div><button type="button" onClick={() => onDelete(message.id)} aria-label={`Delete message from ${message.name}`} className="self-start text-zinc-400 transition hover:text-red-500"><Trash2 size={18} aria-hidden="true" /></button></article>)}</div></section>
 }
 
 function TestimonialsManager({ testimonials, onSave, onDelete }) {
