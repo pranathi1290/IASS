@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-brand: #cc0000;
+  --color-brand-dark: #9b0000;
+  --color-brand-soft: #fff4f4;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -7,9 +14,15 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #09090b;
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: #ffffff;
+  color: #09090b;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #cc0000;
+  color: #ffffff;
 }
 
 #root {

@@ -39,31 +39,31 @@ function Footer() {
   }
 
   return (
-    <footer id="footer" className="border-t border-zinc-800 bg-zinc-950 px-6 py-14 text-zinc-400 sm:px-10 sm:py-16 lg:px-12">
+    <footer id="footer" className="border-t border-zinc-200 bg-white px-6 py-14 text-zinc-600 sm:px-10 sm:py-16 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-20">
-        <a href="/" className="flex w-fit items-center gap-3 text-sm font-bold tracking-[0.18em] text-white">
-          <img src="/iass-logo-white.png" alt="Indo American Startup School" className="h-10 w-auto max-w-[170px] object-contain" />
+        <a href="/" className="flex w-fit items-center">
+          <img src="/iass-logo.png" alt="Indo American Startup School" className="h-11 w-auto max-w-[190px] object-contain" />
         </a>
 
         <div className="grid gap-10 sm:grid-cols-[auto_1fr] sm:gap-14">
         <nav aria-label="Footer navigation">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">Explore</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Explore</p>
           <ul className="space-y-3 text-sm font-semibold">
             {quickLinks.map(({ label, href }) => (
               <li key={label}>
-                <a href={href} className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400">{label}</a>
+                <a href={href} className="transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand">{label}</a>
               </li>
             ))}
           </ul>
         </nav>
 
         <div>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">Contact us</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Contact us</p>
           <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-2">
-            <input required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Your name" aria-label="Your name" className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2.5 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-indigo-400" />
-            <input required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="Email address" aria-label="Email address" className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2.5 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-indigo-400" />
-            <textarea required rows="3" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} placeholder="How can we help?" aria-label="Your message" className="resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2.5 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-indigo-400 sm:col-span-2" />
-            <div className="flex items-center justify-between gap-3 sm:col-span-2"><button type="submit" className="rounded-full bg-orange-400 px-5 py-2.5 text-sm font-bold text-zinc-950 transition hover:bg-orange-300">Send message</button>{submitted && <span className="text-xs font-semibold text-indigo-300" role="status">Message sent.</span>}</div>
+            <input required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Your name" aria-label="Your name" className="rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-sm text-zinc-950 outline-none placeholder:text-zinc-400 focus:border-brand" />
+            <input required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="Email address" aria-label="Email address" className="rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-sm text-zinc-950 outline-none placeholder:text-zinc-400 focus:border-brand" />
+            <textarea required rows="3" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} placeholder="How can we help?" aria-label="Your message" className="resize-none rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-sm text-zinc-950 outline-none placeholder:text-zinc-400 focus:border-brand sm:col-span-2" />
+            <div className="flex items-center justify-between gap-3 sm:col-span-2"><button type="submit" className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark">Send message</button>{submitted && <span className="text-xs font-semibold text-brand" role="status">Message sent.</span>}</div>
           </form>
         </div>
         </div>
@@ -76,14 +76,14 @@ function Footer() {
               rel="noreferrer"
               aria-label={label}
               title={label}
-              className="grid size-10 place-items-center rounded-full border border-zinc-800 text-zinc-500 transition hover:border-indigo-400 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400"
+              className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-500 transition hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
             >
               <Icon size={17} strokeWidth={1.8} aria-hidden="true" />
             </a>
           ))}
         </div>
       </div>
-      <p className="mx-auto mt-10 max-w-7xl border-t border-zinc-900 pt-6 text-xs text-zinc-600">© 2025 IASS. Built for the bold.</p>
+      <p className="mx-auto mt-10 max-w-7xl border-t border-zinc-100 pt-6 text-xs text-zinc-400">© 2026 IASS. Built for the bold.</p>
     </footer>
   )
 }

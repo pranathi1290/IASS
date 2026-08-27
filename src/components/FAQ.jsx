@@ -32,34 +32,34 @@ function FAQ() {
   }
 
   return (
-    <section id="faq" className="bg-zinc-900 px-6 py-20 text-white sm:px-10 sm:py-28 lg:px-12">
+    <section id="faq" className="bg-white px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
         <div>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-indigo-400">Good questions</p>
-          <h2 className="max-w-md text-4xl font-black leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl">Before you take the leap.</h2>
-          <p className="mt-7 max-w-sm text-base leading-7 text-zinc-500">Everything you need to know before sending in your application.</p>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-brand">Good questions</p>
+          <h2 className="max-w-md text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-zinc-950 sm:text-6xl">Before you take the leap.</h2>
+          <p className="mt-7 max-w-sm text-base leading-7 text-zinc-600">Everything you need to know before sending in your application.</p>
         </div>
 
-        <div className="border-t border-zinc-700">
+        <div className="border-t border-zinc-200">
           {questions.map(({ question, answer }, index) => {
             const isOpen = openIndex === index
             const answerId = `faq-answer-${index}`
 
             return (
-              <div key={question} className="border-b border-zinc-700">
+              <div key={question} className="border-b border-zinc-200">
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={answerId}
                   onClick={() => toggleQuestion(index)}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400"
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
                 >
-                  <span className={`text-base font-bold transition-colors sm:text-lg ${isOpen ? 'text-indigo-300' : 'text-white'}`}>{question}</span>
-                  <ChevronDown size={20} className={`shrink-0 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180 text-orange-400' : ''}`} aria-hidden="true" />
+                  <span className={`text-base font-bold transition-colors sm:text-lg ${isOpen ? 'text-brand' : 'text-zinc-950'}`}>{question}</span>
+                  <ChevronDown size={20} className={`shrink-0 text-zinc-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand' : ''}`} aria-hidden="true" />
                 </button>
                 <div id={answerId} className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                   <div className="overflow-hidden">
-                    <p className="max-w-2xl pb-6 pr-10 text-sm leading-6 text-zinc-400">{answer}</p>
+                    <p className="max-w-2xl pb-6 pr-10 text-sm leading-6 text-zinc-600">{answer}</p>
                   </div>
                 </div>
               </div>
