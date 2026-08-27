@@ -1,4 +1,4 @@
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -13,9 +13,11 @@ import WhoShouldApply from './components/WhoShouldApply'
 
 const navLinks = [
   { href: '#who-should-apply', label: 'About' },
-  { href: '#program', label: 'Programs' },
+  { href: '#program', label: 'Program' },
+  { href: '#timeline', label: 'Timeline' },
+  { href: '#experts', label: 'Mentors' },
   { href: '#testimonials', label: 'Pitch Day' },
-  { href: '#footer', label: 'Contact Us' },
+  { href: '#footer', label: 'Contact' },
 ]
 
 function App() {
@@ -27,57 +29,69 @@ function App() {
 
   return (
     <div className="bg-white text-zinc-950">
-      <nav className="sticky top-0 z-50 border-b border-zinc-200/80 border-t-2 border-t-brand bg-white/90 px-6 backdrop-blur-md sm:px-10 lg:px-12">
-        <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-6">
-          <a href="#home" className="flex shrink-0 items-center" onClick={closeMenu}>
-            <img src="/iass-logo.png" alt="Indo American Startup School" className="h-10 w-auto max-w-[180px] object-contain sm:h-11" />
-          </a>
+      <header className="sticky top-0 z-50">
+        <p className="bg-brand px-4 py-2.5 text-center text-[11px] font-semibold tracking-[0.12em] text-white uppercase sm:px-10 sm:text-xs sm:tracking-[0.14em]">
+          <span className="sm:hidden">Applications open · Bengaluru</span>
+          <span className="hidden sm:inline">Applications open · 6-week on-campus cohort · Bengaluru</span>
+        </p>
 
-          <ul className="hidden items-center gap-8 text-sm font-semibold text-zinc-600 lg:flex">
-            {navLinks.map(({ href, label }) => (
-              <li key={label}>
-                <a href={href} className="whitespace-nowrap transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="#apply"
-              className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              Apply Now
+        <nav className="border-b border-zinc-200/80 bg-white/95 px-6 backdrop-blur-md sm:px-10 lg:px-12">
+          <div className="relative mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between gap-4">
+            <a href="#home" className="relative z-10 flex shrink-0 items-center" onClick={closeMenu}>
+              <img src="/iass-logo.png" alt="Indo American Startup School" className="h-9 w-auto max-w-[168px] object-contain sm:h-10" />
             </a>
-            <button
-              type="button"
-              className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:border-brand hover:text-brand lg:hidden"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((open) => !open)}
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </div>
 
-        {menuOpen && (
-          <ul className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-zinc-100 py-4 lg:hidden">
-            {navLinks.map(({ href, label }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  onClick={closeMenu}
-                  className="block rounded-xl px-3 py-3 text-sm font-semibold text-zinc-700 transition hover:bg-brand-soft hover:text-brand"
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </nav>
+            <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 xl:flex">
+              {navLinks.map(({ href, label }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="relative py-1 text-[13px] font-semibold tracking-wide text-zinc-600 after:absolute after:inset-x-0 after:-bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:bg-brand after:transition after:duration-200 hover:text-zinc-950 hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="relative z-10 flex items-center gap-3">
+              <a
+                href="#apply"
+                className="inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2.5 text-[13px] font-bold text-white transition hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:px-5"
+              >
+                Apply
+                <span className="hidden sm:inline">Now</span>
+                <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
+              </a>
+              <button
+                type="button"
+                className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:border-brand hover:text-brand xl:hidden"
+                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                {menuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
+            </div>
+          </div>
+
+          {menuOpen && (
+            <ul className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-zinc-100 py-4 xl:hidden">
+              {navLinks.map(({ href, label }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    onClick={closeMenu}
+                    className="block rounded-xl px-3 py-3 text-sm font-semibold text-zinc-700 transition hover:bg-brand-soft hover:text-brand"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+      </header>
       <Hero />
       <ProgramOverview />
       <WhoShouldApply />
