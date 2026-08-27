@@ -30,74 +30,109 @@ const pillars = [
 
 function ProgramOverview() {
   return (
-    <section id="program" className="relative overflow-hidden bg-white px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
+    <section id="program" className="relative overflow-hidden bg-zinc-50 px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_100%,rgba(204,0,0,0.06),transparent_32%)]"
+        className="pointer-events-none absolute -left-24 top-10 size-72 rounded-full bg-brand/[0.07] blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 bottom-0 size-80 rounded-full bg-brand/[0.08] blur-3xl"
       />
 
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-16">
-          <div>
-            <p className="mb-5 inline-flex items-center rounded-full border border-brand/15 bg-brand-soft px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
-              The program
-            </p>
-            <h2 className="max-w-xl text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-zinc-950 sm:text-5xl lg:text-[3.5rem]">
-              From first spark to real <span className="text-brand">traction.</span>
-            </h2>
-          </div>
-          <div className="max-w-md lg:justify-self-end">
-            <p className="text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
-              Everything you need to make the next six weeks count — validate, build, launch, and pitch with a cohort that moves as fast as you do.
-            </p>
-            <a
-              href="#timeline"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              View the 6-week timeline
-              <ArrowUpRight size={16} strokeWidth={2.4} aria-hidden="true" />
-            </a>
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-5 inline-flex items-center rounded-full border border-brand/15 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand shadow-sm">
+            The program
+          </p>
+          <h2 className="text-4xl font-extrabold leading-[1.02] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-[3.75rem]">
+            From first spark to
+            <span className="mt-1 block text-brand">real traction.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
+            Four focused moves. One serious leap. Validate, build, launch, and pitch with a cohort that moves as fast as you do.
+          </p>
         </div>
 
-        <div className="mt-14 overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-50 sm:mt-16">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.map(({ number, title, description, icon: Icon, featured }, index) => (
+        <div className="relative mt-14 sm:mt-16">
+          <div
+            aria-hidden="true"
+            className="absolute left-[12%] right-[12%] top-7 hidden h-[2px] overflow-hidden bg-zinc-200 lg:block"
+          >
+            <span className="program-rail absolute inset-y-0 left-0 w-full bg-brand" />
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {pillars.map(({ number, title, description, icon: Icon, featured }) => (
               <article
                 key={title}
-                className={`group relative flex min-h-72 flex-col p-6 transition duration-300 sm:p-7 ${
+                className={`program-step group relative flex min-h-[22rem] flex-col overflow-hidden rounded-[1.75rem] border p-6 transition duration-300 sm:p-7 ${
                   featured
-                    ? 'bg-brand text-white sm:col-span-2 lg:col-span-1'
-                    : 'bg-transparent hover:bg-white'
-                } ${index < pillars.length - 1 ? 'border-b border-zinc-200 sm:border-b-0 lg:border-r' : ''} ${
-                  index % 2 === 0 && index < pillars.length - 1 ? 'sm:border-r' : ''
-                } ${index < 2 ? 'sm:border-b lg:border-b-0' : ''}`}
+                    ? 'border-brand bg-brand text-white shadow-[0_28px_60px_rgba(204,0,0,0.28)]'
+                    : 'border-zinc-200/80 bg-white shadow-[0_10px_40px_rgba(15,15,15,0.04)] hover:-translate-y-1.5 hover:border-brand/25 hover:shadow-[0_24px_50px_rgba(204,0,0,0.10)]'
+                }`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -right-2 -top-6 text-[7.5rem] font-extrabold leading-none tracking-[-0.08em] ${
+                    featured ? 'text-white/10' : 'text-zinc-100'
+                  }`}
+                >
+                  {number}
+                </span>
+
+                <div className="relative flex items-center justify-between">
                   <span
-                    className={`grid size-11 place-items-center rounded-2xl transition duration-300 ${
+                    className={`grid size-12 place-items-center rounded-full border transition duration-300 ${
                       featured
-                        ? 'bg-white/15 text-white'
-                        : 'bg-white text-brand shadow-sm group-hover:bg-brand group-hover:text-white'
+                        ? 'border-white/25 bg-white/15 text-white'
+                        : 'border-brand/15 bg-brand-soft text-brand group-hover:border-brand group-hover:bg-brand group-hover:text-white'
                     }`}
                   >
                     <Icon size={20} strokeWidth={1.9} aria-hidden="true" />
                   </span>
-                  <span className={`text-xs font-bold tracking-[0.18em] ${featured ? 'text-white/55' : 'text-zinc-300'}`}>
-                    {number}
+                  <span className={`text-[11px] font-bold uppercase tracking-[0.2em] ${featured ? 'text-white/60' : 'text-zinc-400'}`}>
+                    Step {number}
                   </span>
                 </div>
 
-                <div className="mt-auto pt-14">
-                  <h3 className={`text-xl font-bold tracking-[-0.02em] ${featured ? 'text-white' : 'text-zinc-950'}`}>
+                <div className="relative mt-auto pt-16">
+                  <h3 className={`text-[1.35rem] font-bold tracking-[-0.03em] ${featured ? 'text-white' : 'text-zinc-950'}`}>
                     {title}
                   </h3>
-                  <p className={`mt-3 text-sm leading-6 ${featured ? 'text-white/80' : 'text-zinc-500 group-hover:text-zinc-600'}`}>
+                  <p className={`mt-3 text-sm leading-6 ${featured ? 'text-white/80' : 'text-zinc-500'}`}>
                     {description}
                   </p>
+                  {featured && (
+                    <a
+                      href="#apply"
+                      className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-white transition hover:gap-2.5"
+                    >
+                      Start here
+                      <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+
+        <div className="mt-8 overflow-hidden rounded-[1.75rem] bg-zinc-950 px-6 py-6 text-white sm:mt-10 sm:px-8 sm:py-7">
+          <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">Six weeks. Full focus.</p>
+              <p className="mt-2 max-w-xl text-lg font-bold tracking-[-0.02em] sm:text-xl">
+                Mentorship, builders, and Demo Day — all in one sprint.
+              </p>
+            </div>
+            <a
+              href="#timeline"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-zinc-950 transition hover:bg-brand-soft hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              See the timeline
+              <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
