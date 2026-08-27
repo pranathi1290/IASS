@@ -75,13 +75,13 @@ function Testimonials() {
 
   useEffect(() => {
     function onKeyDown(event) {
-      if (event.key === 'ArrowLeft') showPrevious()
-      if (event.key === 'ArrowRight') showNext()
+      if (event.key === 'ArrowLeft') goTo((activeIndex - 1 + total) % total)
+      if (event.key === 'ArrowRight') goTo((activeIndex + 1) % total)
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  })
+  }, [activeIndex, goTo, total])
 
   return (
     <section id="testimonials" className="relative overflow-hidden bg-zinc-50 px-6 py-14 text-zinc-950 sm:px-10 sm:py-20 lg:px-12" aria-label="Founder testimonials">
@@ -113,7 +113,7 @@ function Testimonials() {
           >
             <div className="grid lg:grid-cols-[minmax(0,17.5rem)_1fr]">
               <div
-                className={`relative min-h-[16rem] overflow-hidden bg-gradient-to-br ${photoColor} transition-opacity duration-400 lg:min-h-[22rem] ${isAnimating ? 'opacity-80' : 'opacity-100'}`}
+                className={`relative min-h-[16rem] overflow-hidden bg-gradient-to-br ${photoColor} transition-opacity duration-300 lg:min-h-[22rem] ${isAnimating ? 'opacity-80' : 'opacity-100'}`}
               >
                 {active.image ? (
                   <>
@@ -145,7 +145,7 @@ function Testimonials() {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(204,0,0,0.22),transparent_45%)]" />
                 </div>
 
-                <div className={`relative flex flex-1 flex-col transition-all duration-400 ${isAnimating ? 'translate-y-1 opacity-0' : 'translate-y-0 opacity-100'}`}>
+                <div className={`relative flex flex-1 flex-col transition-all duration-300 ${isAnimating ? 'translate-y-1 opacity-0' : 'translate-y-0 opacity-100'}`}>
                   <Quote
                     size={44}
                     className="text-brand/35"
