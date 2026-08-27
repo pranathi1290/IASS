@@ -1,4 +1,4 @@
-import { ArrowUpRight, Bot, CalendarDays, MessagesSquare, Palette, ShoppingBag, Sparkles, Users, Workflow, Wrench } from 'lucide-react'
+import { ArrowUpRight, CalendarDays, MessagesSquare, Users, Workflow } from 'lucide-react'
 
 const press = [
   { name: 'The Tribune', focus: 'National press' },
@@ -32,12 +32,12 @@ const communityPillars = [
 ]
 
 const tools = [
-  { name: 'ChatGPT', category: 'AI', description: 'Research, writing, and rapid prototyping.', icon: Bot },
-  { name: 'Claude', category: 'AI', description: 'Deep reasoning for product and strategy.', icon: Sparkles },
-  { name: 'Gamma', category: 'Design', description: 'Pitch decks and visuals in minutes.', icon: Palette },
-  { name: 'Lovable', category: 'Build', description: 'Ship interfaces without slowing down.', icon: Wrench },
-  { name: 'Shopify', category: 'Commerce', description: 'Launch and sell to your first users.', icon: ShoppingBag },
-  { name: 'Meta', category: 'Growth', description: 'Reach early adopters at scale.', icon: Sparkles },
+  { name: 'ChatGPT', category: 'AI', description: 'Research, writing, and rapid prototyping.', logo: '/logos/chatgpt.svg' },
+  { name: 'Claude', category: 'AI', description: 'Deep reasoning for product and strategy.', logo: '/logos/claude.svg' },
+  { name: 'Gamma', category: 'Design', description: 'Pitch decks and visuals in minutes.', logo: '/logos/gamma.svg' },
+  { name: 'Lovable', category: 'Build', description: 'Ship interfaces without slowing down.', logo: '/logos/lovable.svg' },
+  { name: 'Shopify', category: 'Commerce', description: 'Launch and sell to your first users.', logo: '/logos/shopify.svg' },
+  { name: 'Meta', category: 'Growth', description: 'Reach early adopters at scale.', logo: '/logos/meta.svg' },
 ]
 const alumni = [
   { name: 'Loopspace', founder: 'Aarav Mehta', type: 'Consumer SaaS', description: 'A simpler way for ambitious teams to stay in sync.' },
@@ -92,79 +92,49 @@ function ReferenceSections() {
         </div>
       </section>
 
-      <section id="community" className="relative overflow-hidden bg-zinc-50 px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-20 bottom-0 size-72 rounded-full bg-brand/[0.06] blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-16 top-10 size-80 rounded-full bg-brand/[0.07] blur-3xl"
-        />
-
+      <section id="community" className="relative overflow-hidden bg-white px-6 py-14 text-zinc-950 sm:px-10 sm:py-20 lg:px-12">
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-end gap-8 border-b border-zinc-200 pb-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.42fr_0.58fr] lg:gap-10">
             <div>
-              <p className="mb-5 inline-flex items-center rounded-full border border-brand/15 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand shadow-sm">
+              <p className="mb-4 inline-flex items-center rounded-full border border-brand/15 bg-brand-soft px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
                 Beyond the classroom
               </p>
-              <h2 className="max-w-2xl text-4xl font-extrabold leading-[1.0] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-[3.5rem]">
-                Your next co-founder might be
-                <span className="mt-1 block text-brand">in the room.</span>
+              <h2 className="text-3xl font-extrabold leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-4xl lg:text-[2.75rem]">
+                Your next co-founder might be{' '}
+                <span className="text-brand">in the room.</span>
               </h2>
-            </div>
-            <div className="max-w-md lg:justify-self-end">
-              <p className="text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
-                Join a living community of builders across India. Share the messy middle, find collaborators, meet early customers, and make connections that keep working long after Demo Day.
+              <p className="mt-4 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">
+                Join builders across India — find collaborators, early customers, and connections that last beyond Demo Day.
               </p>
+              <a
+                href="#apply"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+              >
+                Join the community
+                <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
+              </a>
             </div>
-          </div>
 
-          <article className="mt-12 overflow-hidden rounded-[2rem] border border-zinc-200 bg-white shadow-[0_24px_60px_rgba(15,15,15,0.06)]">
-            <div className="border-b border-zinc-100 bg-brand px-6 py-7 text-white sm:px-8 sm:py-8">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-start gap-4">
-                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white/15">
-                    <Users size={22} strokeWidth={1.9} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">One room. Four ways in.</p>
-                    <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Everything beyond the classroom.</h3>
+            <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50">
+              <div className="grid grid-cols-2 divide-x divide-y divide-zinc-200">
+                {communityPillars.map(({ title, description, icon: Icon }) => (
+                  <div key={title} className="group flex gap-3 bg-white p-4 transition hover:bg-brand-soft/40 sm:p-5">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand transition group-hover:bg-brand group-hover:text-white">
+                      <Icon size={16} strokeWidth={2} aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold tracking-[-0.01em] text-zinc-950 sm:text-base">{title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-zinc-500 sm:text-sm sm:leading-5">{description}</p>
+                    </div>
                   </div>
-                </div>
-                <a
-                  href="#apply"
-                  className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-brand transition hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-                >
-                  Join the community
-                  <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
-                </a>
+                ))}
               </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2">
-              {communityPillars.map(({ title, description, icon: Icon }, index) => (
-                <div
-                  key={title}
-                  className={`group flex gap-4 p-6 sm:p-7 ${
-                    index < 2 ? 'border-b border-zinc-100' : ''
-                  } ${index % 2 === 0 ? 'sm:border-r sm:border-zinc-100' : ''}`}
-                >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand transition duration-300 group-hover:bg-brand group-hover:text-white">
-                    <Icon size={19} strokeWidth={1.9} aria-hidden="true" />
-                  </span>
-                  <div className="min-w-0">
-                    <h4 className="text-lg font-bold tracking-[-0.02em] text-zinc-950">{title}</h4>
-                    <p className="mt-2 text-sm leading-6 text-zinc-500">{description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section id="tools" className="relative overflow-hidden bg-zinc-50 px-6 py-20 text-zinc-950 sm:px-10 sm:py-28 lg:px-12">
+      <section id="tools" className="relative overflow-hidden bg-zinc-50 px-6 py-14 text-zinc-950 sm:px-10 sm:py-20 lg:px-12">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -left-20 top-24 size-72 rounded-full bg-brand/[0.06] blur-3xl"
@@ -175,74 +145,57 @@ function ReferenceSections() {
         />
 
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
-            <aside className="lg:sticky lg:top-28">
-              <p className="mb-5 inline-flex items-center rounded-full border border-brand/15 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand shadow-sm">
-                Build faster
-              </p>
-              <h2 className="text-4xl font-extrabold leading-[1.0] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-[3.35rem]">
-                Modern tools.
-                <span className="mt-1 block text-brand">More time for the work that matters.</span>
-              </h2>
-              <p className="mt-6 text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
-                Learn how to use the latest AI, design, and commerce tools to move from rough idea to working product with less friction.
-              </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="inline-flex items-center rounded-full border border-brand/15 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand shadow-sm">
+              Build faster
+            </p>
+            <h2 className="mt-5 text-3xl font-extrabold leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-4xl lg:text-[2.75rem]">
+              Modern tools.{' '}
+              <span className="text-brand">More time for the work that matters.</span>
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">
+              Learn how to use the latest AI, design, and commerce tools to move from rough idea to working product with less friction.
+            </p>
+          </div>
 
-              <ul className="mt-8 space-y-3 border-t border-zinc-200 pt-8">
-                {['AI & research', 'Design & decks', 'Build & ship', 'Commerce & growth'].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm font-semibold text-zinc-700">
-                    <span className="size-1.5 rounded-full bg-brand" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#program"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+            {tools.map(({ name, category, description, logo }, index) => (
+              <article
+                key={name}
+                className="group flex flex-col rounded-2xl border border-zinc-200 bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-[0_20px_48px_rgba(204,0,0,0.10)] sm:p-6"
               >
-                See how we teach them
-                <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
-              </a>
-            </aside>
+                <div className="flex items-start justify-between gap-3">
+                  <span className="grid size-12 place-items-center overflow-hidden rounded-xl border border-zinc-100 bg-zinc-50 p-2 transition duration-300 group-hover:border-brand/15 group-hover:bg-white sm:size-14">
+                    <img
+                      src={logo}
+                      alt=""
+                      className="size-full object-contain"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span className="text-[10px] font-bold tracking-[0.16em] text-zinc-300 transition group-hover:text-brand">
+                    0{index + 1}
+                  </span>
+                </div>
 
-            <div className="space-y-3">
-              {tools.map(({ name, category, description, icon: Icon }, index) => (
-                <article
-                  key={name}
-                  className="group flex gap-5 rounded-[1.5rem] border border-zinc-200 bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-[0_20px_48px_rgba(204,0,0,0.10)] sm:p-6"
-                >
-                  <div className="flex shrink-0 flex-col items-center gap-2">
-                    <span className="grid size-14 place-items-center rounded-2xl bg-brand-soft text-brand transition duration-300 group-hover:bg-brand group-hover:text-white group-hover:shadow-[0_12px_28px_rgba(204,0,0,0.25)]">
-                      <Icon size={22} strokeWidth={1.9} aria-hidden="true" />
+                <div className="mt-4 min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                    <h3 className="text-lg font-bold tracking-[-0.02em] text-zinc-950 sm:text-xl">{name}</h3>
+                    <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-500 transition group-hover:bg-brand-soft group-hover:text-brand">
+                      {category}
                     </span>
-                    <span className="text-[10px] font-bold tracking-[0.16em] text-zinc-300">0{index + 1}</span>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <h3 className="text-xl font-bold tracking-[-0.02em] text-zinc-950">{name}</h3>
-                      <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-500 transition group-hover:bg-brand-soft group-hover:text-brand">
-                        {category}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm leading-6 text-zinc-500">{description}</p>
-                  </div>
-                  <ArrowUpRight
-                    size={18}
-                    strokeWidth={2.2}
-                    aria-hidden="true"
-                    className="mt-1 hidden shrink-0 text-zinc-300 transition duration-300 group-hover:text-brand sm:block"
-                  />
-                </article>
-              ))}
+                  <p className="mt-2 text-sm leading-6 text-zinc-500">{description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
 
-              <div className="rounded-[1.5rem] bg-zinc-950 px-6 py-6 text-white sm:px-7 sm:py-7">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand">Hands-on from week one</p>
-                <p className="mt-2 text-lg font-bold tracking-[-0.02em] sm:text-xl">
-                  You won&apos;t just hear about these tools — you&apos;ll use them to build your MVP.
-                </p>
-              </div>
-            </div>
+          <div className="mt-6 rounded-2xl bg-zinc-950 px-6 py-6 text-white sm:px-8 sm:py-7">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand">Hands-on from week one</p>
+            <p className="mt-2 text-lg font-bold tracking-[-0.02em] sm:text-xl">
+              You won&apos;t just hear about these tools — you&apos;ll use them to build your MVP.
+            </p>
           </div>
         </div>
       </section>
