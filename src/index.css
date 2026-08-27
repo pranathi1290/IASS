@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  --site-header-height: 6.5rem;
 }
 
 body {
