@@ -12,7 +12,7 @@ const questions = [
   },
   {
     question: 'Where does the program take place?',
-    answer: 'IASS is an on-campus experience in Bengaluru. The exact campus details and orientation information are shared with accepted founders before the cohort begins.',
+    answer: 'IASS is an on-campus experience in Hyderabad. The exact campus details and orientation information are shared with accepted founders before the cohort begins.',
   },
   {
     question: 'How long is the program?',
