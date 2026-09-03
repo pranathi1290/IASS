@@ -10,7 +10,7 @@ const launchSteps = [
 const stats = [
   { value: '6 weeks', label: 'Focused sprint' },
   { value: 'On campus', label: 'Hyderabad' },
-  { value: '₹1,50,000 +GST', label: 'Offer price · was ₹4,00,000 +GST' },
+  { value: '₹1,49,999 +GST', strikeValue: '₹4,00,000 +GST', label: 'Offer price for selected founders' },
   { value: 'Demo Day', label: 'Pitch to investors' },
 ]
 
@@ -88,8 +88,11 @@ function Hero() {
 
       <section className="shrink-0 border-t border-zinc-200 bg-white">
         <dl className="mx-auto grid max-w-7xl grid-cols-2 divide-y divide-zinc-200 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
-          {stats.map(({ value, label }) => (
+          {stats.map(({ value, strikeValue, label }) => (
             <div key={value} className="px-5 py-4 sm:px-6 sm:py-5">
+              {strikeValue && (
+                <p className="text-xs font-semibold text-zinc-400 line-through sm:text-sm">{strikeValue}</p>
+              )}
               <dt className="text-lg font-extrabold tracking-[-0.03em] text-zinc-950 sm:text-xl">{value}</dt>
               <dd className="mt-0.5 text-xs text-zinc-500 sm:text-sm">{label}</dd>
             </div>
