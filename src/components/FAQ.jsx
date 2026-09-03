@@ -27,7 +27,7 @@ const questions = [
 const quickFacts = [
   { label: 'Duration', value: '6 weeks' },
   { label: 'Cost', value: 'Free' },
-  { label: 'Location', value: 'Bengaluru' },
+  { label: 'Location', value: 'Hyderabad' },
 ]
 
 function FAQ() {

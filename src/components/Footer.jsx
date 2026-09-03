@@ -1,4 +1,5 @@
-import { ArrowUpRight, BriefcaseBusiness, Camera, Check, Mail, Send, Share2 } from 'lucide-react'
+import { ArrowUpRight, Check, Mail, Send } from 'lucide-react'
+import { FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
 import { useState } from 'react'
 
 const quickLinks = [
@@ -9,9 +10,9 @@ const quickLinks = [
 ]
 
 const socialLinks = [
-  { label: 'Twitter', href: 'https://twitter.com', icon: Share2 },
-  { label: 'LinkedIn', href: 'https://linkedin.com', icon: BriefcaseBusiness },
-  { label: 'Instagram', href: 'https://instagram.com', icon: Camera },
+  { label: 'X', href: 'https://x.com', icon: FaXTwitter },
+  { label: 'LinkedIn', href: 'https://linkedin.com', icon: FaLinkedinIn },
+  { label: 'Instagram', href: 'https://instagram.com', icon: FaInstagram },
 ]
 
 function Footer() {
@@ -93,7 +94,7 @@ function Footer() {
                   title={label}
                   className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white/60 transition hover:border-brand/40 hover:bg-brand hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
                 >
-                  <Icon size={16} strokeWidth={1.9} aria-hidden="true" />
+                  <Icon size={17} aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -189,7 +190,7 @@ function Footer() {
         <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/35">© 2026 Indo American Startup School. Built for the bold.</p>
           <p className="text-xs font-semibold text-white/35">
-            Bengaluru · 6 weeks · Free for selected founders
+            Hyderabad · 6 weeks · Free for selected founders
           </p>
         </div>
       </div>

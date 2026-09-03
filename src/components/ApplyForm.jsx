@@ -12,7 +12,7 @@ const initialForm = {
 }
 
 const highlights = [
-  'Six weeks, fully on campus in Bengaluru',
+  'Six weeks, fully on campus in Hyderabad',
   'Free for selected founders',
   'Build your MVP with mentors and peers',
 ]

@@ -9,7 +9,7 @@ const launchSteps = [
 
 const stats = [
   { value: '6 weeks', label: 'Focused sprint' },
-  { value: 'On campus', label: 'Bengaluru' },
+  { value: 'On campus', label: 'Hyderabad' },
   { value: 'Free', label: 'For selected founders' },
   { value: 'Demo Day', label: 'Pitch to investors' },
 ]
@@ -57,7 +57,7 @@ function Hero() {
             </div>
             <p className="mt-3 flex items-center gap-2 text-xs font-medium text-zinc-500 sm:mt-4 sm:text-sm">
               <MapPin size={14} className="text-brand" aria-hidden="true" />
-              Live on campus in Bengaluru
+              Live on campus in Hyderabad
             </p>
           </div>
 

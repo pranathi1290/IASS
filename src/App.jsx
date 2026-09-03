@@ -31,8 +31,8 @@ function App() {
     <div className="bg-white text-zinc-950">
       <header className="sticky top-0 z-50">
         <p className="bg-brand px-4 py-2 text-center text-[11px] font-semibold tracking-[0.12em] text-white uppercase sm:px-10 sm:text-xs sm:tracking-[0.14em]">
-          <span className="sm:hidden">Applications open · Bengaluru</span>
-          <span className="hidden sm:inline">Applications open · 6-week on-campus cohort · Bengaluru</span>
+          <span className="sm:hidden">Applications open · Hyderabad</span>
+          <span className="hidden sm:inline">Applications open · 6-week on-campus cohort · Hyderabad</span>
         </p>
 
         <nav className="border-b border-zinc-200/80 bg-white/95 px-6 backdrop-blur-md sm:px-10 lg:px-12">
