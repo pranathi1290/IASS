@@ -36,7 +36,7 @@ function Ecosystem() {
         </div>
 
         <div className="mx-auto mt-10 max-w-4xl overflow-x-auto sm:mt-12">
-          <div className="flex min-w-max items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand via-brand to-emerald-600 px-6 py-3.5 text-white sm:gap-3 sm:px-8">
+          <div className="flex min-w-max items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand via-zinc-900 to-zinc-950 px-6 py-3.5 text-white sm:gap-3 sm:px-8">
             {flowSteps.map((step, index) => (
               <span key={step} className="flex items-center gap-2 sm:gap-3">
                 <span className="text-xs font-bold whitespace-nowrap sm:text-sm">{step}</span>
