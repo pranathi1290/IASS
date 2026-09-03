@@ -10,7 +10,7 @@ const launchSteps = [
 const stats = [
   { value: '6 weeks', label: 'Focused sprint' },
   { value: 'On campus', label: 'Hyderabad' },
-  { value: 'Free', label: 'For selected founders' },
+  { value: '₹1,50,000 +GST', label: 'Offer price · was ₹4,00,000 +GST' },
   { value: 'Demo Day', label: 'Pitch to investors' },
 ]
 
