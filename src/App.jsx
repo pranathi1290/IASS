@@ -1,5 +1,6 @@
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import Ecosystem from './components/Ecosystem'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
@@ -13,6 +14,7 @@ import WhoShouldApply from './components/WhoShouldApply'
 
 const navLinks = [
   { href: '#who-should-apply', label: 'About' },
+  { href: '#ecosystem', label: 'Ecosystem' },
   { href: '#program', label: 'Program' },
   { href: '#timeline', label: 'Timeline' },
   { href: '#experts', label: 'Mentors' },
@@ -94,6 +96,7 @@ function App() {
       </header>
 
       <Hero />
+      <Ecosystem />
       <ProgramOverview />
       <WhoShouldApply />
       <Timeline />
